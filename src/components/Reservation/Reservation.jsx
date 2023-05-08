@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Reservation.css";
-import { useNavigation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Reservation = () => {
     const initialValue = {
@@ -13,13 +13,13 @@ const Reservation = () => {
     const [btnDisabled, setBtnDisabled] = useState(true);
     const [message, setMessage] = useState("");
 
-    const navigate = useNavigation();
-
+    const navigate = useNavigate();
+    
     const handleInputChange = (event) => {
         if (
             data.name.length + 1 < 3 ||
             data.lastName.length + 1 < 3 ||
-            data.phone.length + 1 < 9 ||
+            data.phone.length + 1 < 10 ||
             data.date.length === 0
         ) {
             setMessage("Name, Last Name, and date are required");
@@ -84,7 +84,7 @@ const Reservation = () => {
                     <div className="input-container">
                         <label htmlFor="phone">phone</label>
                         <input
-                            type="phone"
+                            type="tel"
                             placeholder="Enter your phone"
                             onChange={handleInputChange}
                             name="phone"
